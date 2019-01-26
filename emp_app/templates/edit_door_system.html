@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+
+{% block title %}Edit System{% endblock %}
+
+{% block style %}
+<style>
+    .well {
+        background-color: white;
+    } 	
+    .title {
+        text-align: center; 
+        font-size: 180%;
+        font-weight: 600;
+    }
+</style>
+{% endblock %}
+
+{% block body %}
+
+{% include 'navbar.html' %}
+
+<div class="container">
+	<div class="row">
+        <div class="col-sm-3"></div>
+        <div class="col-sm-6">
+            <p style="margin-top: 2%"></p>
+            <div class="well">
+            	<h3 style="text-align: center;color: blue;">Enter the number of Quantity</h3>
+                <hr>
+                <form action="#" method="post">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <label>Quantity :</label>
+                        <input type="text" class="form-control" 
+                            name="dquantity" value="{{door_instance.quantity}}" id="door_quantity">
+                    </div> 
+                    <div class="form-group">
+                        <label> Price per Door :</label>
+                        <input type="text" class="form-control" 
+                            name="dprice" value="{{door_instance.price}}" id="door_price">
+                    </div>
+                     <div class="form-group">
+                        <label>Total Price :</label>
+                        <input  onchange="door_cost()" type="text" class="form-control" 
+                            name="dtotal" value ="{{door_instance.totalprice}}" id="door_total_price">
+                    </div> 
+                    <button type="submit"  onclick="door_cost()" class="btn btn-primary btn-block">BUY NOW</button>
+                </form>
+                <div class="well">
+                	<a href="/doors">Back to Doors page</a>
+                	
+                </div>
+            </div>
+        </div>        
+    </div>     
+</div>
+
+<script>
+	function door_cost(){
+		var quantity,price,total_price;
+			quantity=Number(document.getElementById("door_quantity").value);
+			price=Number(document.getElementById("door_price").value);
+			total_price = quantity * price;
+			document.getElementById("door_total_price").value = total_price;
+	}
+</script>
+{% endblock %}

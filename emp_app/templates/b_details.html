@@ -1,0 +1,113 @@
+
+{% extends 'base.html' %}
+{% block title %}Wardrobe Details {% endblock %}
+
+{% block style %}
+    <style>
+    
+        .h1 {
+            font-size: 15px ;
+            font-style: italic;
+            color: purple;
+        }
+         .card {            
+            width: 100%;
+            background-color: blue;
+        }
+        .card-icon {
+            font-size: 400%;
+        }
+        .card-text {
+            font-size: 80%; 
+            font-weight: 800;
+        }
+        h4{
+            font-size:15px;
+            font-weight:bold;
+        }
+      
+    </style>
+{% endblock %}
+{% block body %}
+{% include 'navbar.html' %}
+
+<div class="container">
+        <div class="well row">
+            <form action="" method="post" >
+                {% csrf_token %}
+
+                <h1>ENTER THE WARDROBE LENGTH AND WIDTH</h1>
+                <br>
+                {% for h in wardrobe_cost %}
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label class="control-label col-sm-2">Length:</label>
+                        <div class="col-sm-10">
+                            <input type="number" value="{{h.length}}" name="bed_length" placeholder="Enter the length"  class="form-control" id="blength">
+                        </div>                                  
+                    </div><br>
+                    <div class="form-group">
+                        <label class="control-label col-sm-2">Width:</label>
+                        <div class="col-sm-10">
+                            <input type="number" value="{{h.width}}" name="bed_width" placeholder="Enter the width" class="form-control" id="bwidth">
+                        </div>                                  
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-2">Cost:</label>
+                        <div class="col-sm-10">
+                            <input type="number" value="{{h.cost}}" name="bed_cost"  placeholder="Total cost"  class="form-control" id="banswer">
+                        </div>  
+                    </div>               
+                </div>
+                {% endfor %}
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <button type="submit"  onclick="cost()" class="btn btn-lg btn-success">Submit</button>           
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="well row">
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label class="control-label col-sm-4">Click to buy:</label>
+                    <div class="col-sm-8">
+                        <a href="/cart"><button>Add Wardrobe cost to cart</button></a>
+                    </div>                                  
+                </div>
+            </div>
+        </div>
+            
+
+        <div class="well row">
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label class="control-label col-sm-4">Select handles:</label>
+                    <div class="col-sm-8">
+                        <a href="/handles"><button>Select handles</button></a>
+                    </div>                                  
+                </div>
+                <br>
+                <div class="form-group">
+                    <label class="control-label col-sm-4">Select door type:</label>
+                    <div class="col-sm-8">
+                        <a href="/doors"><button>Select door type</button></a>
+                    </div>                                  
+                </div>                      
+            </div>                 
+        </div> 
+</div>
+<script>
+    function cost(){
+        var a,b,c,d,k;
+            a=Number(document.getElementById("blength").value);
+            b=Number(document.getElementById("bwidth").value);
+            k=1000;
+            c= a * b;
+            d=c*k;
+            document.getElementById("banswer").value = d;
+    }
+</script>
+
+{% endblock %}
+

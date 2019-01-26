@@ -1,0 +1,80 @@
+
+{% extends 'base.html' %}
+{% block title %}Doors purchase {% endblock %}
+
+{% block style %}
+ <style>   .card {
+      width: 350px;
+      margin: 0.5px;
+      text-align: center;
+      font-family: arial;
+      border:1px solid ;
+      float:left;
+    }
+
+    .price {
+      color: grey;
+      font-size: 22px;
+    }
+
+    .card button {
+      border: none;
+      outline: 0;
+      padding: 12px;
+      color: white;
+      background-color: #000;
+      text-align: center;
+      cursor: pointer;
+      width: 100%;
+      font-size: 18px;
+      min-height: 100px;
+    }
+
+    .card button:hover {
+      opacity: 0.7;
+    }
+    </style>
+{% endblock %}
+{% block body %}
+{% include 'navbar.html' %}
+
+  <div class="well">
+    <table  class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Photos</th>
+                <th>Quantity Selected</th>
+                <th>Price</th>
+                <th>Total Price</th>
+                <th>Click to Buy</th>
+                <th>Add to cart</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for door in doors %}
+                <tr>
+                    <td>{{door.name}}</td>
+                    <td class="col-sm-4 right-pull"><img style="width: 35%; height:200px;" src="{{door.photos}}"></td>
+                    <td>{{door.quantity}}</td>
+                    <td>{{door.price}}</td>
+                    <td>{{door.totalprice}}</td>
+                    <td>
+                       <a href="/doors/{{door.id}}/edit" 
+                            class="btn btn-xs btn-info" data-toggle="tooltip" title="Buy now">
+                            <i class="fas fa-edit"></i>
+                       </a>
+                    </td>
+                    <td>
+                       <a href="/cart" 
+                            class="btn btn-xs btn-info" data-toggle="tooltip" title="Buy now">
+                            <i class="fas fa-edit"></i>
+                       </a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+  
+{% endblock %}

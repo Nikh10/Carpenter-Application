@@ -1,0 +1,192 @@
+
+{% extends 'base.html' %}
+{% block title %}cart Details {% endblock %}
+
+{% block style %}
+<style>
+ 
+</style>
+{% endblock %}
+{% block body %}
+{% include 'navbar.html' %}
+
+ <div class="container"> 
+  <div class="well row">
+      <div class="col-sm-4">  
+        <h3 style="text-align: center;">KITCHEN COST</h3><br>               
+        <label> Price of kitchen  :</label>
+        {% for k_obj in kitchen_obj %}
+          <input disabled="" type="text" class="form-control"  value="{{k_obj.cost}}" id="kit_price">          
+        {% endfor %}
+
+        <label> Price of handle :</label>
+        {% for k_handle in handles %}
+          <input disabled="" type="text" class="form-control" value="{{k_handle.totalprice}}" id="handle_price"> 
+        {% endfor %}
+
+        <label> Price of Doors :</label>
+        {% for k_doors in doors %}
+          <input disabled="" type="text" class="form-control"  value="{{k_doors.totalprice}}" id="door_price"> 
+        {% endfor %}
+
+        <label> GST:</label>
+        <input disabled="" type="text" class="form-control" value="2" id="gst"> 
+        
+        <label> Total Kitchen Bill:</label>
+          <input  disabled=""  type="text" class="form-control" name="kitchen_total_price" value="" id="kitchen_bill">
+        <br><br>
+        <button type="submit" onclick="kitchen_bill()" class="btn btn-lg btn-success">Calculate</button>
+      </div>
+      <div class="col-sm-4">
+        <h3 style="text-align: center;">WARDROBE COST</h3><br>             
+        <label> Price of Wardrobe  :</label>
+        {% for w_obj in wardrobe_obj %}
+          <input disabled="" type="text" class="form-control"  value="{{w_obj.cost}}" id="wardrobe_price">          
+        {% endfor %}
+        <label> Price of handle :</label>
+
+        {% for wp in bedroom_handles %}
+        <input disabled="" type="text" class="form-control" value="{{wp.totalprice}}" id="hw_price"> 
+        {% endfor %}
+
+        <!-- Write here -->
+
+
+       <label> Total value :</label>
+        <input disabled="" type="text" class="form-control"  value="{{value}}" id="dw_price">
+
+
+        <label> Price of Doors :</label>
+        <input disabled="" type="text" class="form-control"  value="{{doors.totalprice}}" id="dw_price"> 
+
+
+
+
+
+
+        <!-- end -->
+
+
+
+
+        <label> GST:</label>
+        <input disabled="" type="text" class="form-control" value="2" id="gst"> 
+        
+        <label> Total Wardrobe Bill:</label>
+        <input disabled="" type="text" class="form-control" value="" id="wardrobe_bill">
+        
+        <br><br>
+        <button type="submit" onclick="Wardrobe_bill()" class="btn btn-lg btn-success">Calculate</button>
+      </div>
+      <div class="col-sm-4">
+        <h3 style="text-align: center;">Hall COST</h3><br>  
+        <label> Price of Hall  :</label>
+        {% for h_obj in hall_obj %}
+        <input disabled="" type="text" class="form-control"  value="{{h_obj.cost}}" id="hall_price">          
+        {% endfor %}
+        <label> Price of handle :</label>
+        {% for hh in hall_handles %}
+        <input disabled="" type="text" class="form-control" value="{{hh.totalprice}}" id="hh_price"> 
+        {% endfor %}
+
+        <!-- Write here -->
+
+
+
+
+
+
+
+
+        <label> Price of Doors :</label>
+        <input disabled="" type="text" class="form-control"  value="{{doors.totalprice}}" id="dh_price"> 
+
+
+
+
+
+
+
+
+
+        <!-- end -->
+
+        <label> GST:</label>
+        <input disabled="" type="text" class="form-control" value="2" id="gst"> 
+        
+        <label> Total  Hall Bill:</label>
+        <input disabled="" type="text" class="form-control" value="" id="hall_bill">
+        <br><br>
+        <button type="submit" onclick="hall_bill()" class="btn btn-lg btn-success">Calculate</button>
+    </div>
+  </div>
+    <hr>
+    <div class="well row">
+      <h1 style="text-align:center; color:blue"> Final BILL</h1>
+      <div class="form-group">
+        <hr>
+        </div>
+        <div class="col-sm-6">
+            <button type="submit" onclick="final_bill()" class="btn btn-md btn-success">Final Bill</button>
+          <div class="col-sm-6">
+             <input disabled="" type="text" class="form-control"  value="" id="final_bill">
+          </div> 
+        </div> 
+
+
+        <div class="col-sm-2">
+          <button disabled="" class="form-control" type="submit" class="btn btn-md btn-success"><a  href="/checkout"> Checkout </a></button>         
+        </div> 
+        </div><br><br>
+
+        <div class="well row">
+            <h1 style="font-family:italic; text-align:center;">Thank You Visit Again</h1>
+        </div>     
+      </div>  
+
+</div>
+<script>
+  function kitchen_bill(){
+      var kprice,hprice,dprice,gst,total_bill;
+      kprice=Number(document.getElementById("kit_price").value);
+      hprice=Number(document.getElementById("handle_price").value);
+      dprice=Number(document.getElementById("door_price").value);
+      gst=Number(document.getElementById("gst").value);
+
+      total_bill =kprice + hprice + dprice + gst
+      document.getElementById("kitchen_bill").value = total_bill;
+  }
+  function Wardrobe_bill(){
+      var wardrobe_price,hw_price,dw_price,gst,total_bill;
+      wardrobe_price=Number(document.getElementById("wardrobe_price").value);
+      hw_price=Number(document.getElementById("hw_price").value);
+      dw_price=Number(document.getElementById("dw_price").value);
+      gst=Number(document.getElementById("gst").value);
+
+      total_bill =wardrobe_price + hw_price + dw_price + gst
+      document.getElementById("wardrobe_bill").value = total_bill;
+  }
+  function hall_bill(){
+      var hall_price,hh_price,dh_price,gst,total_bill;
+      hall_price=Number(document.getElementById("hall_price").value);
+      hh_price=Number(document.getElementById("hh_price").value);
+      dh_price=Number(document.getElementById("dh_price").value);
+      gst=Number(document.getElementById("gst").value);
+
+      total_bill =hall_price + hh_price + dh_price + gst
+      document.getElementById("hall_bill").value = total_bill;
+  }
+  function final_bill(){
+      var kitchen_bill,wardrobe_bill,hall_bill,total_bill;
+      kitchen_bill=Number(document.getElementById("kitchen_bill").value);
+      wardrobe_bill=Number(document.getElementById("wardrobe_bill").value);
+      hall_bill=Number(document.getElementById("hall_bill").value);
+
+      total_bill =kitchen_bill + wardrobe_bill + hall_bill
+      document.getElementById("final_bill").value = total_bill;
+  }
+</script>
+{% endblock %}
+
+
+

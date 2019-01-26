@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style type="text/css">
+   
+  </style>
+</head>
+
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="home">CARPENTER</a>
+    </div>
+    <ul class="nav navbar-nav">
+      <li class="active"><a href="/home">Home</a></li>
+      <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#"> Gallary <span class="caret"></span></a>
+        <ul class="dropdown-menu">
+          <li><a href="/k_details">Kitchen Units</a></li>
+          <li><a href="/b_details">Bedroom Wardrobes</a></li>
+          <li><a href="/h_details">Plasma stands</a></li>
+        </ul>
+      </li>
+      <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#"> Accessories <span class="caret"></span></a>
+        <ul class="dropdown-menu">
+          <li><a href="/handles">Handle Type</a></li>
+          <li><a href="/doors">Door Type</a></li>
+        </ul>
+      </li>  
+        {% if request.user.is_authenticated %}
+        <li><a href="/login"></span> {{request.user.username}}</a></li>
+        <li><a href="/logout"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+        {% else %}
+        <li><a href="/login"><span class="glyphicon glyphicon-log-in"></span> Sign In</a></li>
+        {% endif %}
+
+  </div>
+</nav>

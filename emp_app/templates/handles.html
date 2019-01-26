@@ -1,0 +1,160 @@
+
+{% extends 'base.html' %}
+{% block title %}Kitchen Details {% endblock %}
+
+{% block style %}
+ <style>
+    .card {
+      width: 350px;
+      margin: 0.5px;
+      text-align: center;
+      font-family: arial;
+      border:1px solid ;
+      float:left;
+    }
+
+    .price {
+      color: grey;
+      font-size: 22px;
+    }
+
+    .card button {
+      border: none;
+      outline: 0;
+      padding: 12px;
+      color: white;
+      background-color: #000;
+      text-align: center;
+      cursor: pointer;
+      width: 100%;
+      font-size: 18px;
+      min-height: 100px;
+    }
+
+    .card button:hover {
+      opacity: 0.7;
+    }
+    </style>
+{% endblock %}
+{% block body %}
+{% include 'navbar.html' %}
+
+  <h1> Kitchen Handles</h1>
+  <div class="well">
+    <table  class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Photos</th>
+                <th>Quantity Selected</th>
+                <th>Total Price</th>
+                <th>Price</th>
+                <th>Click to Buy</th>
+                <th>Add to Cart</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for handle in handles %}
+                <tr>
+                    <td>{{handle.name}}</td>
+                    <td><img src="{{handle.photos}}"></td>
+                    <td>{{handle.quantity}}</td>
+                    <td>{{handle.totalprice}}</td>
+                    <td>{{handle.price}}</td>
+                    <td>
+                       <a href="/handles/{{handle.id}}/edit" 
+                            class="btn btn-xs btn-info" data-toggle="tooltip" title="Buy now">
+                            <i class="fas fa-edit"></i>
+                       </a>
+                    </td>
+                    <td>
+                       <a href="/cart" 
+                            class="btn btn-xs btn-info" data-toggle="tooltip" title="Buy now">
+                            <i class="fas fa-edit"></i>
+                       </a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+<h1> Bedroom Handles</h1>
+  <div class="well">
+    <table  class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Photos</th>
+                <th>Quantity Selected</th>
+                <th>Total Price</th>
+                <th>Price</th>
+                <th>Click to Buy</th>
+                <th>Add to Cart</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for bed in bedroom_handles %}
+                <tr>
+                    <td>{{bed.name}}</td>
+                    <td><img src="{{bed.photos}}"></td>
+                    <td>{{bed.quantity}}</td>
+                    <td>{{bed.totalprice}}</td>
+                    <td>{{bed.price}}</td>
+                    <td>
+                       <a href="/handles/{{bed.id}}/bedit" 
+                            class="btn btn-xs btn-info" data-toggle="tooltip" title="Buy now">
+                            <i class="fas fa-edit"></i>
+                       </a>
+                    </td>
+                    <td>
+                       <a href="/cart" 
+                            class="btn btn-xs btn-info" data-toggle="tooltip" title="Buy now">
+                            <i class="fas fa-edit"></i>
+                       </a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>  
+<h1> Hall Handles</h1>
+  <div class="well">
+    <table  class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Photos</th>
+                <th>Quantity Selected</th>
+                <th>Total Price</th>
+                <th>Price</th>
+                <th>Click to Buy</th>
+                <th>Add to Cart</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for hall in hall_handles %}
+                <tr>
+                    <td>{{hall.name}}</td>
+                    <td><img src="{{hall.photos}}"></td>
+                    <td>{{hall.quantity}}</td>
+                    <td>{{hall.totalprice}}</td>
+                    <td>{{hall.price}}</td>
+                    <td>
+                       <a href="/handles/{{hall.id}}/hedit" 
+                            class="btn btn-xs btn-info" data-toggle="tooltip" title="Buy now">
+                            <i class="fas fa-edit"></i>
+                       </a>
+                    </td>
+                    <td>
+                       <a href="/cart" 
+                            class="btn btn-xs btn-info" data-toggle="tooltip" title="Buy now">
+                            <i class="fas fa-edit"></i>
+                       </a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>  
+{% endblock %}

@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+
+{% block title %}Edit System{% endblock %}
+
+{% block style %}
+<style>
+    .well {
+        background-color: white;
+    } 	
+    .title {
+        text-align: center; 
+        font-size: 180%;
+        font-weight: 600;
+    }
+</style>
+{% endblock %}
+
+{% block body %}
+
+{% include 'navbar.html' %}
+
+<div class="container">
+	<div class="row">
+        <div class="col-sm-3"></div>
+        <div class="col-sm-6">
+            <p style="margin-top: 2%"></p>
+            <div class="well">
+            	<h3 style="text-align: center;color: blue;">Enter the number of Quantity</h3>
+                <hr>
+                <form action="" name="msg_frm" method="post" >
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <label>Quantity :</label>
+                        <input type="text" class="form-control" 
+                            name="handle_quantity" value="{{handles_system.quantity}}" id="quantity">
+                    
+                    <div class="form-group">
+                        <label> Price per handle :</label>
+                        <input disabled="" type="text" class="form-control" 
+                            name="price" value="{{handles_system.price}}" id="price">
+                    </div>
+                     <div class="form-group">
+                        <label>Total Price :</label>
+                        <input  onchange="cost()" type="text" class="form-control" 
+                            name="handle_total" value="{{handles_system.totalprice}}" id="total_price">
+                    </div> 
+                    <button type="submit" onclick="cost()" class="btn btn-primary btn-block">BUY NOW</button>
+                </form>
+                <div class="well">
+                	<a href="/handles">Back to Handles page</a>                	
+                </div>
+            </div>
+        </div>        
+    </div>     
+</div>
+
+<script>
+	function cost(){
+		var quantity,price,total_price;
+			quantity=Number(document.getElementById("quantity").value);
+			price=Number(document.getElementById("price").value);
+			total_price = quantity * price;
+			document.getElementById("total_price").value = total_price;
+	}
+</script>
+{% endblock %}
